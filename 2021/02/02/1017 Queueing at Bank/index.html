@@ -22,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>所有分类 - HONGRRY&#39;S BLOG</title>
+  <title>1017 Queueing at Bank - HONGRRY&#39;S BLOG</title>
+  
+    <meta name="keywords" content="PAT">
   
 
   
@@ -164,6 +166,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
             
               <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/categories/
+                  
+                  
+                  
+                    id="blogcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
                   
                   
@@ -186,7 +204,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     id="about"
                   >
-                  <i class='fas fa-archive fa-fw'></i>关于
+                  <i class='fas fa-info-circle fa-fw fa-fw'></i>关于
                 </a>
                 
               </li>
@@ -294,6 +312,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/categories/
+                  
+                  
+                  
+                    id="blogcategories"
+                  >
+                  <i class='fas fa-folder-open fa-fw fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
                   
                   
@@ -316,7 +350,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     id="about"
                   >
-                  <i class='fas fa-archive fa-fw'></i>关于
+                  <i class='fas fa-info-circle fa-fw fa-fw'></i>关于
                 </a>
                 
               </li>
@@ -399,15 +433,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper category search' style="display: none;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div id='cover-backstretch'></div>
           
           <div class='cover-body'>
   <div class='top'>
     
-    
-      <p class="title">Volantis</p>
     
     
   </div>
@@ -438,22 +470,253 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      <div class='post-wrapper'>
-        <article id="cat" class="post article white-box reveal shadow">
-          <h2>所有分类</h2>
-          <div class="all-cats">
-            
-          </div>
-          <br>
+    
+    
+      <h1 class="title">
+        1017 Queueing at Bank
+      </h1>
+      <div class='new-meta-box'>
+        
           
-        </article>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640">
+    <p>HONGRRY</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年2月2日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="1017 Queueing at Bank" data-path="/2021/02/02/1017%20Queueing%20at%20Bank/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
       </div>
     
+  </div>
+
+
   
+  
+  <p>Suppose a bank has <em>K</em> windows open for service. There is a yellow line in front of the windows which devides the waiting area into two parts. All the customers have to wait in line behind the yellow line, until it is his/her turn to be served and there is a window available. It is assumed that no window can be occupied by a single customer for more than 1 hour.</p>
+<p>Now given the arriving time <em>T</em> and the processing time <em>P</em> of each customer, you are supposed to tell the average waiting time of all the customers.</p>
+<h2 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h2><p>Each input file contains one test case. For each case, the first line contains 2 numbers: <em>N</em> (≤104) - the total number of customers, and <em>K</em> (≤100) - the number of windows. Then <em>N</em> lines follow, each contains 2 times: <code>HH:MM:SS</code> - the arriving time, and <em>P</em> - the processing time in minutes of a customer. Here <code>HH</code> is in the range [00, 23], <code>MM</code> and <code>SS</code> are both in [00, 59]. It is assumed that no two customers arrives at the same time.</p>
+<p>Notice that the bank opens from 08:00 to 17:00. Anyone arrives early will have to wait in line till 08:00, and anyone comes too late (at or after 17:00:01) will not be served nor counted into the average.</p>
+<h2 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h2><p>For each test case, print in one line the average waiting time of all the customers, in minutes and accurate up to 1 decimal place.</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7 3</span><br><span class="line">07:55:00 16</span><br><span class="line">17:00:01 2</span><br><span class="line">07:59:59 15</span><br><span class="line">08:01:00 60</span><br><span class="line">08:00:00 30</span><br><span class="line">08:00:02 2</span><br><span class="line">08:03:00 10</span><br></pre></td></tr></table></figure>
+
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8.2</span><br></pre></td></tr></table></figure>
+
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><ul>
+<li><p>转换成秒进行处理</p>
+</li>
+<li><p>到银行的有三种情况</p>
+<ol>
+<li>提前到达    需要等待到八点钟，这段等待时间需要计算</li>
+<li>八点后到达 有排队和不需要排队的情况，排队时间需要计算</li>
+<li>17:00:01 及以后到达 不处理，且不计算到总人数</li>
+</ol>
+</li>
+<li><p>如果窗口有人，后面等待的人，需要等到这个窗口服务完，不管银行有没有关门（17:00:01）</p>
+<p>且都要计算等待时间、和总人数</p>
+</li>
+<li><p>使用优先队列更优</p>
+</li>
+</ul>
+<h2 id="CODE："><a href="#CODE：" class="headerlink" title="CODE："></a>CODE：</h2><h3 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> OPEN_TIME 28800</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CLOSE_TIME 61200</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">customer</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> arriving_time;</span><br><span class="line">    <span class="keyword">int</span> processing_time;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> customer &amp;a, <span class="keyword">const</span> customer &amp;b)</span> </span>&#123; <span class="keyword">return</span> a.arriving_time &lt; b.arriving_time; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m,total=<span class="number">0</span>,count=<span class="number">0</span>;</span><br><span class="line">    vector&lt;customer&gt; customers;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="comment">// 优先队列</span></span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>, vector&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt;&gt; queue;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        queue.<span class="built_in">push</span>(OPEN_TIME);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> th, tm, ts, tt;</span><br><span class="line">        <span class="keyword">int</span> arr;</span><br><span class="line">        customer t&#123;&#125;;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d:%d:%d %d&quot;</span>, &amp;th, &amp;tm, &amp;ts, &amp;tt);</span><br><span class="line">        arr = th * <span class="number">60</span> * <span class="number">60</span> + tm * <span class="number">60</span> + ts;</span><br><span class="line">        <span class="keyword">if</span> (arr &lt;= CLOSE_TIME) &#123;    <span class="comment">// 17点以后到达的，不处理</span></span><br><span class="line">            <span class="comment">// 早于八点到的人 可以这样处理、因为早到的这些人、永远是连续在一起的、对本题没有影响</span></span><br><span class="line">            <span class="keyword">if</span> (t.arriving_time &lt; OPEN_TIME) &#123;</span><br><span class="line">                t.arriving_time = OPEN_TIME;</span><br><span class="line">            &#125;</span><br><span class="line">            t.arriving_time = th * <span class="number">60</span> * <span class="number">60</span> + tm * <span class="number">60</span> + ts;</span><br><span class="line">            t.processing_time = tt * <span class="number">60</span> &lt;= <span class="number">3600</span> ? tt * <span class="number">60</span> : <span class="number">3600</span>;</span><br><span class="line">            customers.<span class="built_in">push_back</span>(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(customers.<span class="built_in">begin</span>(), customers.<span class="built_in">end</span>(), cmp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; customers.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (customers[i].arriving_time &lt; queue.<span class="built_in">top</span>()) &#123;    <span class="comment">// 还有人在服务</span></span><br><span class="line">            total += queue.<span class="built_in">top</span>() - customers[i].arriving_time;</span><br><span class="line">            queue.<span class="built_in">push</span>(queue.<span class="built_in">top</span>() + customers[i].processing_time);</span><br><span class="line">            queue.<span class="built_in">pop</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 没有人服务</span></span><br><span class="line">            queue.<span class="built_in">push</span>(customers[i].arriving_time + customers[i].processing_time);</span><br><span class="line">            queue.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    count != <span class="number">0</span> ? <span class="built_in">printf</span>(<span class="string">&quot;%.1f\n&quot;</span>, (total / <span class="number">60.0</span>) / count) : <span class="built_in">printf</span>(<span class="string">&quot;0.0\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> OPEN_TIME 28800</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CLOSE_TIME 61200</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">customer</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> arriving_time;</span><br><span class="line">    <span class="keyword">int</span> processing_time;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> customer &amp;a, <span class="keyword">const</span> customer &amp;b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findWindows</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt; &amp;windows)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">windows</span><span class="params">(m, OPEN_TIME)</span></span>;</span><br><span class="line">    vector&lt;customer&gt; customers;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> th, tm, ts, tt;</span><br><span class="line">        <span class="keyword">int</span> arr;</span><br><span class="line">        customer t&#123;&#125;;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d:%d:%d %d&quot;</span>, &amp;th, &amp;tm, &amp;ts, &amp;tt);</span><br><span class="line">        arr = th * <span class="number">60</span> * <span class="number">60</span> + tm * <span class="number">60</span> + ts;</span><br><span class="line">        <span class="keyword">if</span> (arr &lt;= CLOSE_TIME) &#123;        <span class="comment">// 在17点后到达的不处理</span></span><br><span class="line">            <span class="comment">// 提前到达的、先处理等待时间</span></span><br><span class="line">            <span class="keyword">if</span> (t.arriving_time&lt;OPEN_TIME) &#123;</span><br><span class="line">                t.arriving_time=OPEN_TIME;</span><br><span class="line">            &#125;</span><br><span class="line">            t.arriving_time = th * <span class="number">60</span> * <span class="number">60</span> + tm * <span class="number">60</span> + ts;</span><br><span class="line">            t.processing_time = tt * <span class="number">60</span> &lt;= <span class="number">3600</span> ? tt * <span class="number">60</span> : <span class="number">3600</span>;</span><br><span class="line">           customers.<span class="built_in">push_back</span>(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(customers.<span class="built_in">begin</span>(), customers.<span class="built_in">end</span>(), cmp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; customers.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> win = <span class="built_in">findWindows</span>(windows);</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 开门后</span></span><br><span class="line">                <span class="keyword">if</span> (customers[i].arriving_time &lt; windows[win]) &#123;    <span class="comment">// 还有人在服务</span></span><br><span class="line">                    total += windows[win] - customers[i].arriving_time;</span><br><span class="line">                &#125; <span class="keyword">else</span>                                              <span class="comment">// 没有人服务</span></span><br><span class="line">                    windows[win] = customers[i].arriving_time;</span><br><span class="line"></span><br><span class="line">                windows[win] += customers[i].processing_time;       <span class="comment">// 办理</span></span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (count == <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">&quot;0.0\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%.1f\n&quot;</span>, (total / <span class="number">60.0</span>) / count);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> customer &amp;a, <span class="keyword">const</span> customer &amp;b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.arriving_time &lt; b.arriving_time;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findWindows</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt; &amp;windows)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min = <span class="number">9999999</span>;</span><br><span class="line">    <span class="keyword">int</span> win = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; windows.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( windows[i] &lt; min) &#123;</span><br><span class="line">            min = windows[i];</span><br><span class="line">            win = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> win;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cloud.miooim.cn/images/20210211155346.png" class="lazyload" data-srcset="https://cloud.miooim.cn/images/20210211155346.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="image-20210211155346622"></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2021/02/02/1017%20Queueing%20at%20Bank/>http://example.com/2021/02/02/1017%20Queueing%20at%20Bank/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-10T14:46:00+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月10日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/PAT/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>PAT</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/02/02/1017%20Queueing%20at%20Bank/&title=1017 Queueing at Bank - HONGRRY'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/02/02/1017%20Queueing%20at%20Bank/&title=1017 Queueing at Bank - HONGRRY'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/02/02/1017%20Queueing%20at%20Bank/&title=1017 Queueing at Bank - HONGRRY'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/02/02/1016%20Phone%20Bills/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>1016 Phone Bills</p>
+          <p class='content'>A long-distance telephone company charges its customers by the following rules:
+Making a long-dis...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/02/02/1019%20General%20Palindromic%20Number/'>
+          <p class='title'>1019 General Palindromic Number<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>A number that will be the same when it is written forwards or backwards is known as a Palindromic...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -463,11 +726,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-Specification"><span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output-Specification"><span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">分析：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CODE%EF%BC%9A"><span class="toc-text">CODE：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97"><span class="toc-text">优先队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
   
 
 
 </aside>
+
 
 
 		  
@@ -476,8 +754,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="1017 Queueing at Bank";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
@@ -585,6 +863,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <p><a href="/">Copyright © 2017-2021 HONGRRY</a></p>
 
         </div>
+      
+    
+      
+        
+          <div><p><a href="http://beian.miit.gov.cn/" target="_blank">黔ICP备19004302号-1</a></p>
+</div>
+        
       
     
   </footer>
@@ -788,7 +1073,7 @@ var loadCSS = function( href, before, media, attributes ){
 <script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
 
     <script type="text/javascript">
-        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
         if ('true' == 'true') {
           function shuffle(arr){
             /*From countercurrent-time*/
@@ -807,7 +1092,7 @@ var loadCSS = function( href, before, media, attributes ){
           $.backstretch(
             imgs,
           {
-            duration: "10000",
+            duration: "15000",
             fade: "1500"
           });
         
@@ -1264,7 +1549,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     var valine = new Valine();
-    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"1naF4s224cfXmDIE6dySx5k9-MdYXbMMI","appKey":"VInDOm0IDwfbKb6a7q5sDPil","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
       el: '#valine_container',
       path: path,
       placeholder: pagePlaceholder,
