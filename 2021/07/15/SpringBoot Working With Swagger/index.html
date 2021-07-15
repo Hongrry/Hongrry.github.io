@@ -5,10 +5,6 @@
   <!-- SEO相关 -->
   
     
-      
-        <meta name="robots" content="noindex,follow">
-      
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -26,7 +22,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>HONGRRY&#39;S BLOG</title>
+  <title>SpringBoot整合Swagger - HONGRRY&#39;S BLOG</title>
+  
+    <meta name="keywords" content="notes">
   
 
   
@@ -421,7 +419,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  search' style="display: none;">
+        <div id="full" class='cover-wrapper post search' style="display: none;">
           
             <div id='cover-backstretch'></div>
           
@@ -459,527 +457,280 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  <section class="post-list">
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1018%20Public%20Bike%20Management%20/">
-        1018 Public Bike Management
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        There is a public bike service in Hangzhou City which provides great convenience to the tourists from all over the world. One may rent a bike at any station and return it to any other stations in t...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+      <h1 class="title">
+        SpringBoot整合Swagger
+      </h1>
+      <div class='new-meta-box'>
         
           
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640">
+    <p>HONGRRY</p>
+  </a>
+</div>
+
+          
         
-        <time>2021-02-02</time>
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/springboot/">springboot</a>
+    </a>
+  </div>
+
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月15日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="SpringBoot整合Swagger" data-path="/2021/07/15/SpringBoot%20Working%20With%20Swagger/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>导入 <code>swagger</code> 和 <code>web</code> 依赖后，就可以通过 <code>/swagger-ui/</code> 访问后台</p>
+<p><code>swagger</code>接口源</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//地址:端口/应用名/v2/api-docs</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Springfox提供Docket对象，为其设置相关属性，将其注册成为spring的bean后，可以在接口文档中展示（<code>可配置多个Docket的bean</code>，对应不同分组的接口）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ApiInfo apiInfo=<span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">            .title(<span class="string">&quot;用户管理&quot;</span>)<span class="comment">//api标题</span></span><br><span class="line">            .description(<span class="string">&quot;用户管理相关接口描述&quot;</span>)<span class="comment">//api描述</span></span><br><span class="line">            .version(<span class="string">&quot;1.0.0&quot;</span>)<span class="comment">//版本号</span></span><br><span class="line">            .contact(</span><br><span class="line">                    <span class="keyword">new</span> Contact(<span class="string">&quot;Hongrry&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;https://b.miooim.cn/&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;2682402775@qq.com&quot;</span>))<span class="comment">//本API负责人的联系信息</span></span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">// 配置多个bean 创建多个分组</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">getUserDocket</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)<span class="comment">//文档类型</span></span><br><span class="line">                .apiInfo(apiInfo)   <span class="comment">//设置包含在json ResourceListing响应中的api元信息</span></span><br><span class="line">                .groupName(<span class="string">&quot;用户&quot;</span>)  <span class="comment">// 多个Docket创建分组</span></span><br><span class="line">                .select()<span class="comment">//启动用于api选择的构建器</span></span><br><span class="line">                .apis(RequestHandlerSelectors</span><br><span class="line">                        .basePackage(<span class="string">&quot;com.example.springsecurity.controller&quot;</span>)) <span class="comment">// 扫描接口的包</span></span><br><span class="line">                .paths(PathSelectors.any()) <span class="comment">// 路径过滤(扫描所有路径)</span></span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>通过在控制器和接口方法上加上相关<code>注解</code>，可以给接口和控制器添加相关的<code>接口说明</code>信息。</p>
+<p>常用注解如下：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>使用的地方</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Api</td>
+<td>类/接口</td>
+<td>描述类/接口主要用途</td>
+</tr>
+<tr>
+<td>@ApiOperation</td>
+<td>方法</td>
+<td>描述方法的用途</td>
+</tr>
+<tr>
+<td>@ApiImplicitParam</td>
+<td>方法</td>
+<td>用于描述接口的非对象参数</td>
+</tr>
+<tr>
+<td>@ApiImplicitParams</td>
+<td>方法</td>
+<td>用于描述接口的非对象参数集</td>
+</tr>
+<tr>
+<td>@ApiIgnore</td>
+<td>类/方法/参数</td>
+<td>Swagger 文档不会显示拥有该注解的接口</td>
+</tr>
+<tr>
+<td>@ApiModel</td>
+<td>参数实体类</td>
+<td>可设置接口相关实体的描述</td>
+</tr>
+<tr>
+<td>ApiModelProperty</td>
+<td>参数实体类属性</td>
+<td>可设置实体属性的相关描</td>
+</tr>
+</tbody></table>
+<p><strong>参数实体类代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiModel(&quot;用户&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;用户ID&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;用户代码&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userCode;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;用户姓名&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;年龄&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>接口代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api(&quot;用户管理api&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/userApi&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserApiController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserApiService userApiService;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiOperation(&quot;查询用户信息&quot;)</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/findUserList&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JSONObject <span class="title">findUserList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        JSONObject jsonObject=<span class="keyword">new</span> JSONObject();</span><br><span class="line">        jsonObject.put(<span class="string">&quot;success&quot;</span>,<span class="keyword">true</span>);</span><br><span class="line">        jsonObject.put(<span class="string">&quot;result&quot;</span>,userApiService.findUserList());</span><br><span class="line">        <span class="keyword">return</span> jsonObject;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ApiOperation(&quot;保存用户&quot;)</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;saveUser&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JSONObject <span class="title">saveUser</span><span class="params">(<span class="meta">@RequestBody</span> UserInfo userInfo)</span></span>&#123;</span><br><span class="line">        userApiService.saveUser(userInfo);</span><br><span class="line">        JSONObject jsonObject=<span class="keyword">new</span> JSONObject();</span><br><span class="line">        jsonObject.put(<span class="string">&quot;success&quot;</span>,<span class="keyword">true</span>);</span><br><span class="line">        jsonObject.put(<span class="string">&quot;message&quot;</span>,<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> jsonObject;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>swagger通过webjars的方式，来实现网页方式的接口访问，如果配置了拦截器，需要放行如下页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/swagger*/**</span><br><span class="line">/v2/**			# swagger接口源</span><br><span class="line">/webjars/**</span><br></pre></td></tr></table></figure>
+
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/02/02/1018%20Public%20Bike%20Management%20/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://example.com/2021/07/15/SpringBoot%20Working%20With%20Swagger/>http://example.com/2021/07/15/SpringBoot%20Working%20With%20Swagger/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-15T19:41:31+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年7月15日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1019%20General%20Palindromic%20Number/">
-        1019 General Palindromic Number
-      </a>
-    </h2>
-  
-  <div class='md'>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>notes</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        A number that will be the same when it is written forwards or backwards is known as a Palindromic Number. For example, 1234321 is a palindromic number. All single digit numbers are palindromic numb...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/07/15/SpringBoot%20Working%20With%20Swagger/&title=SpringBoot整合Swagger - HONGRRY'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/07/15/SpringBoot%20Working%20With%20Swagger/&title=SpringBoot整合Swagger - HONGRRY'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/07/15/SpringBoot%20Working%20With%20Swagger/&title=SpringBoot整合Swagger - HONGRRY'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1019%20General%20Palindromic%20Number/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1020%20Tree%20Traversals/">
-        1020 Tree Traversals
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Suppose that all the keys in a binary tree are distinct positive integers. Given the postorder and inorder traversal sequences, you are supposed to output the level order traversal sequence of the ...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2021/02/02/1020%20Tree%20Traversals/'>
-            阅读全文
-          </a>
-        </div>
+      
+        <a class='next' href='/2021/07/14/SpringBoot%20Working%20With%20SQL%20Databases%20w/'>
+          <p class='title'>SpringBoot整合SQL数据库<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>数据源123456spring:  datasource:    driver-class-name: com.mysql.jdbc.Driver    url: jdbc:mysql://lo...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1021%20Deepest%20Root%20/">
-        1021 Deepest Root
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        A graph which is connected and acyclic can be considered a tree. The height of the tree depends on the selected root. Now you are supposed to find the root that results in a highest tree. Such a ro...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1021%20Deepest%20Root%20/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
+  </article>
 
-</div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1022%20Digital%20Library/">
-        1022 Digital Library
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        A Digital Library contains millions of books, stored according to their titles, authors, key words of their abstracts, publishers, and published years. Each book is assigned an unique 7-digit numbe...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1022%20Digital%20Library/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
 
-</div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1023%20Have%20Fun%20with%20Numbers/">
-        1023 Have Fun with Numbers
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Notice that the number 123456789 is a 9-digit number consisting exactly the numbers from 1 to 9, with no duplication. Double it we will obtain 246913578, which happens to be another 9-digit number ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1023%20Have%20Fun%20with%20Numbers/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1024%20Palindromic%20Number/">
-        1024 Palindromic Number
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        A number that will be the same when it is written forwards or backwards is known as a Palindromic Number. For example, 1234321 is a palindromic number. All single digit numbers are palindromic numb...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1024%20Palindromic%20Number/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1025%20PAT%20Ranking/">
-        1025 PAT Ranking
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Programming Ability Test (PAT) is organized by the College of Computer Science and Technology of Zhejiang University. Each test is supposed to run simultaneously in several places, and the ranklist...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1025%20PAT%20Ranking/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1027%20Colors%20in%20Mars%20/">
-        1027 Colors in Mars
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        People in Mars represent the colors in their computers in a similar way as the Earth people. That is, a color is represented by a 6-digit number, where the first 2 digits are for Red, the middle 2 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1027%20Colors%20in%20Mars%20/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/02/1026%20Table%20Tennis%20/">
-        1026 Table Tennis
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        A table tennis club has N tables available to the public. The tables are numbered from 1 to N. For any pair of players, if there are some tables open when they arrive, they will be assigned to the ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'></a>
-        
-        <time>2021-02-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/PAT%E7%94%B2%E7%BA%A7/">PAT甲级</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/02/1026%20Table%20Tennis%20/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 4
-        </p>
-        
-          <a class="next" rel="next" href="/page/3/">
-            <section class="post next white-box shadow">
-              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
 
 
 </div>
@@ -989,257 +740,22 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://q1.qlogo.cn/g?b=qq&nk=2682402775&s=640'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">HONGRRY'S BLOG</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:2682402775@qq.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/Hongrry"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/PAT%E7%94%B2%E7%BA%A7/" href="/categories/PAT%E7%94%B2%E7%BA%A7/"
-            id="categoriesPATE794B2E7BAA7"
-            ><div class='name'>PAT甲级</div><div class='badge'>(34)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/springboot/" href="/categories/springboot/"
-            id="categoriesspringboot"
-            ><div class='name'>springboot</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-            id="categoriesE5ADA6E4B9A0E7AC94E8AEB0"
-            ><div class='name'>学习笔记</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/PAT/" style="font-size: 24px; color: #555">PAT</a> <a href="/tags/notes/" style="font-size: 14px; color: #999">notes</a>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-
-<section class="widget shadow desktop">
-  
-  <header>
-    
-      <i class="fas fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>37 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2018/07/06'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>26.9k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="lc-uv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="lc-sv"><span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Thu Jul 15 2021 21:51:34 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2021-07-15 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2021-07-15 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
 
   
 
@@ -1254,8 +770,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="SpringBoot整合Swagger";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
