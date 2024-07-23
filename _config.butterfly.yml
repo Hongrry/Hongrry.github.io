@@ -40,7 +40,7 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+favicon: /img/favicon.ico
 
 # Avatar (頭像)
 avatar:
@@ -51,7 +51,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: https://api.dujin.org/pic/fengjing
+index_img: img/background.jpg
 # If the banner of page not setting, it will show the top_img
 default_top_img: img/background.jpg
 # The banner image of archive page
@@ -206,8 +206,12 @@ footer:
   owner:
     enable: true
     since: 2016
-  custom_text: <a href=http://beian.miit.gov.cn/ target=_blank><span>黔ICP备19004302号</span></a>
-  copyright: true # Copyright of theme and framework
+  custom_text: |
+    <a href="https://beian.miit.gov.cn/" rel="external nofollow noreferrer" target="_blank">黔 ICP 备 19004302 号</a>|
+    <a target="_blank" rel="noopener external nofollow noreferrer" 
+        href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral">
+        本网站由<img src="/img/upyun-1.png" alt="又拍云" width="56" height="28" style="vertical-align:bottom" data-ll-status="loaded" class="entered loaded">提供CDN加速/云存储服务</a>
+  copyright: false # Copyright of theme and framework
 
 # aside (側邊欄)
 # --------------------------------------
