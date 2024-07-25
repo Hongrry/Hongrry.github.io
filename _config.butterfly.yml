@@ -210,7 +210,7 @@ footer:
     <a href="https://beian.miit.gov.cn/" rel="external nofollow noreferrer" target="_blank">黔 ICP 备 19004302 号</a>|
     <a target="_blank" rel="noopener external nofollow noreferrer" 
         href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral">
-        本网站由<img src="/img/upyun-1.png" alt="又拍云" width="56" height="28" style="vertical-align:bottom" data-ll-status="loaded" class="entered loaded">提供CDN加速/云存储服务</a>
+        本网站由<img src="img/upyun-1.png" alt="又拍云" width="56" height="28" style="vertical-align:bottom" data-ll-status="loaded" class="entered loaded">提供CDN加速/云存储服务</a>
   copyright: false # Copyright of theme and framework
 
 # aside (側邊欄)
@@ -561,7 +561,7 @@ messenger:
 
 # Baidu Analytics
 # https://tongji.baidu.com/web/welcome/login
-baidu_analytics: f51529b1bb4fe9f2451c9570794bca46
+baidu_analytics: 51529b1bb4fe9f2451c9570794bca46
 
 # Google Analytics
 # https://analytics.google.com/analytics/web/
@@ -876,7 +876,7 @@ pangu:
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: true
+  enable: false
   field: site # site/post
   placeholder:
   blur: false
