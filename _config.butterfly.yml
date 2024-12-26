@@ -207,7 +207,7 @@ footer:
     enable: true
     since: 2016
   custom_text: |
-    <a href="https://beian.miit.gov.cn/" rel="external nofollow noreferrer" target="_blank">黔 ICP 备 19004302 号</a>|
+    <a href="https://beian.miit.gov.cn/" rel="external nofollow noreferrer" target="_blank">黔ICP备19004302号222</a>|
     <a target="_blank" rel="noopener external nofollow noreferrer" 
         href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral">
         本网站由<img src="img/upyun-1.png" alt="又拍云" width="56" height="28" style="vertical-align:bottom" data-ll-status="loaded" class="entered loaded">提供CDN加速/云存储服务</a>
@@ -871,7 +871,7 @@ instantpage: true
 # Insert a space between Chinese character and English character (中英文之間添加空格)
 pangu:
   enable: true
-  field: site # site/post
+  field: post # site/post
 
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/vanilla-lazyload
